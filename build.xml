@@ -1,0 +1,44 @@
+<project name="DITA Tests" basedir=".">
+	<description>Simple junit4 test framework</description>
+	
+	<property name="test.dir" location="test"/>
+	<property name="bin.dir" location="bin${file.separator}" />
+	<property name="test.dir.classes" location="${bin.dir}${file.separator}"/>
+	
+	<path id="lib.dir">
+		<fileset dir="lib">
+			<include name="*.jar" />
+			<include name="*/**.jar" />
+		</fileset>
+	</path>
+	
+	<!-- The following group of targets are reserved for compiling/running tests -->
+    <target name="clean">
+		<delete dir="${test.dir.classes}"/>
+		<delete>
+			<fileset dir="." includes="**/TEST-*.xml" />
+		</delete>
+	</target>
+				
+	<target name="compile" depends="clean" description="Compile the test classes">
+		<mkdir dir="${bin.dir}"/>
+		<javac srcdir="${test.dir}" destdir="${bin.dir}">
+			<classpath>
+				<pathelement location="test.dir" />
+				<path refid="lib.dir" />
+			</classpath>
+		</javac>
+	</target>
+		
+	<target name="test" depends="compile">
+		<junit>
+			<classpath>
+				<pathelement location="${bin.dir}" />
+				<pathelement location="${test.dir.classes}" />
+				<path refid="lib.dir" />
+			</classpath>
+			<formatter type="xml"/>
+			<test name="dita.AllUnitTests"/>
+		</junit>
+	</target>
+</project>

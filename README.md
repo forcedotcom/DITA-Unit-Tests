@@ -1,4 +1,8 @@
-DITA-Unit-Tests
-===============
+dita-test-framework
+===================
 
-A collection of unit tests for DITA content.
+Simple test framework to perform XPATH tests on dita content
+
+Testing
+-------
+    $ ant test
