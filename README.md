@@ -1,8 +1,10 @@
 dita-test-framework
 ===================
 
-Simple test framework to perform XPATH tests on dita content
+Simple Junit test framework to perform XPATH tests on dita xml or ditamap content.
 
-Testing
+Setup
 -------
     $ ant test
+
+Review the output in ./Test-dita.AllUnitTests.xml
